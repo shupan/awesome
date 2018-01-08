@@ -1,0 +1,169 @@
+<!--{template common/header}-->
+<!--[name]elec_201703_auto2文章频道[/name]-->
+<!--{eval $list = array();}-->
+<!--{eval $wheresql = category_get_wheresql($cat);}-->
+<!--{eval $list = category_get_list($cat, $wheresql, $page);}-->
+
+<link rel="stylesheet" type="text/css" href="template/elec_201703_auto2/style/css/menhu.css" />
+<link rel="stylesheet" type="text/css" href="template/elec_201703_auto2/style/css/pindao.css" />
+<script src="template/elec_201703_auto2/style/js/jquery.superslide.js" type="text/javascript"></script>
+
+<!--{ad/text/wp a_t}-->
+<style id="diy_style" type="text/css">
+</style>
+<div class="wp"> 
+  <!--[diy=diy1]-->
+  <div id="diy1" class="area"></div>
+  <!--[/diy]--> 
+</div>
+</div>
+<div class="tit_box cl">
+  <div class="tit_top categoryBt detailName cl" style="width: 1200px; margin: 0 auto; position: relative;">
+     <div class="second_nav_icon flex_box midCenter">
+                <img src="template/elec_201703_auto2/style/ht.png">
+            </div>
+            <div class="tag_name midCenter flex_box" style="left: 72px;"><!--分类名称:-->$cat[catname]</div>
+            <img class="circle_icon" src="template/elec_201703_auto2/style/circle_icon.png">
+            <!--{if ($_G['group']['allowpostarticle'] || $_G['group']['allowmanagearticle'] || $categoryperm[$catid]['allowmanage'] || $categoryperm[$catid]['allowpublish']) && empty($cat['disallowpublish'])}-->
+           <a href="portal.php?mod=portalcp&ac=article&catid=$cat[catid]" class="y post" style="color: #666666; margin: 65px 23px 0 0; font-size: 16px;">发布+</a>
+        <!--{/if}-->
+</div>
+</div>
+<div class="wp cl">
+<div id="ct" class="ct2 wp inside_box cl" style="margin: 30px 0 0 0;">
+  <div style="float: left; width: 800px; box-shadow: none;">
+  <div class="mn cl" style="float: none; padding: 0; margin: 0; box-shadow: none; border-radius: 0; overflow: hidden; background: none;">
+  <!--[diy=diy_topic]--><div id="diy_topic" class="area"></div><!--[/diy]-->
+    <!--{ad/articlelist/mbm hm/1}--><!--{ad/articlelist/mbm hm/2}--> 
+    <!--[diy=listcontenttop]--><div id="listcontenttop" class="area"></div><!--[/diy]-->
+    <div class="bm" style="margin: 0; background: none;">
+      <!-- 文章列表 begin -->
+
+        <!--{loop $list['list'] $value}--> 
+        <!--{eval $highlight = article_title_style($value);}--> 
+        <!--{eval $article_url = fetch_article_url($value);}-->
+
+<div class="identclass box videoV" style="margin: 0 0 24px 0;">
+  <a href="$article_url" target="_blank">
+  <div class="tit text-overflow">$value[title]</div>
+  </a>
+  <div class="videoA">
+    <div class="videoL fn-left"> <a href="$article_url" target="_blank"><img alt="" class="indexlazy" src="$value[pic]" width="240" style="display: inline;"></a> </div>
+    <div class="introduce fn-left"> <a href="$article_url" target="_blank">
+      <div class="introduceTop text-overflow-all"> $value[summary]... </div>
+      </a>
+      <div class="tagBot">
+        <a href="{forumurl}" target="_blank"><span>#$value[catname]</span></a></div>
+    </div>
+  </div>
+  <div class="userInfo">
+    <div class="cover fn-left"> <a href="home.php?mod=space&uid=$value[uid]" target="_blank"><!--{avatar($value[uid],small)}--></a> <a href="home.php?mod=space&uid=$value[uid]" target="_blank"><span>$value[username]</span></a> </div>
+    <div class="info fn-right"> <span><a href="$article_url" style="color: #999999;">查看</a></span> <span class="xian"></span> <span>$value[dateline]</span> </div>
+  </div>
+</div>
+
+        <!--{/loop}--> 
+
+      <!-- 文章列表 end --> 
+      <!--[diy=listloopbottom]-->
+      <div id="listloopbottom" class="area"></div>
+      <!--[/diy]--> 
+    </div>
+    <!--{ad/articlelist/mbm hm/3}--><!--{ad/articlelist/mbm hm/4}-->
+    
+    <!--[diy=diycontentbottom]-->
+    <div id="diycontentbottom" class="area"></div>
+    <!--[/diy]--> 
+  </div>
+    <!--{if $list['multi']}-->
+    <div class="pgs cl" style="margin-top: 0;">{$list['multi']}</div>
+    <!--{/if}-->
+  </div>
+  <div class="sd pph" style="box-shadow: none;">
+    <div class="drag"> 
+      <!--[diy=diyrighttop]-->
+      <div id="diyrighttop" class="area"></div>
+      <!--[/diy]--> 
+    </div>
+    
+    <!-- 分类 -->
+    <!--{if $cat[subs]}-->
+<div class="rightBox tags" style="width: 368px;">
+    <span class="leftXian"></span>
+    <div class="author-rec">
+        <span class="p1">热门频道</span>
+    </div>
+    <div class="tags-hot">
+        <div class="tag-list" style="padding-top: 15px;">
+         <!--{loop $cat[subs] $value}-->
+                <div class="tag-item"><a href="{$portalcategory[$value['catid']]['caturl']}">$value[catname]</a></div>
+         <!--{/loop}-->
+        </div>
+    </div>
+</div>
+<!--{elseif $cat[others]}-->
+<div class="rightBox tags" style="width: 368px;">
+    <span class="leftXian"></span>
+    <div class="author-rec">
+        <span class="p1">热门频道</span>
+    </div>
+    <div class="tags-hot">
+        <div class="tag-list">
+         <!--{loop $cat[others] $value}-->
+                <div class="tag-item"><a href="{$portalcategory[$value['catid']]['caturl']}">$value[catname]</a></div>
+         <!--{/loop}-->
+        </div>
+    </div>
+</div>
+<!--{/if}-->
+    
+    <!--[diy=ad11]--><div id="ad11" class="area"></div><!--[/diy]-->
+    <!--[diy=diy7]--><div id="diy7" class="area"></div><!--[/diy]-->
+                <div class="rightBox two">
+    <span class="leftXian"></span>
+    <div class="tabBar cl">
+		<div class="hd cl">
+           <!--[diy=diy_tab]--><div id="diy_tab" class="area"></div><!--[/diy]-->
+		</div>
+		<div class="bd article cl">
+				<div class="conWrap">
+							<div class="con">
+                               <!--[diy=diy_con1]--><div id="diy_con1" class="area"></div><!--[/diy]-->
+							</div>
+							<div class="con">
+                               <!--[diy=diy_con2]--><div id="diy_con2" class="area"></div><!--[/diy]-->
+							</div>
+							<div class="con">
+                               <!--[diy=diy_con3]--><div id="diy_con3" class="area"></div><!--[/diy]-->
+							</div>
+				</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+	   jQuery(".tabBar").slide({ mainCell:".conWrap", effect:"fold", pnLoop:false });
+	</script>
+    </div>
+    <!--[diy=diy_bottom]--><div id="diy_bottom" class="area"></div><!--[/diy]-->
+    <!-- 推荐阅读 -->
+    <div class="sbody cl" style="margin: 0;">
+      <!--[diy=sbody]-->
+      <div id="sbody" class="area"></div>
+      <!--[/diy]--> 
+    </div>
+
+    <div class="drag"> 
+      <!--[diy=diy2]-->
+      <div id="diy2" class="area"></div>
+      <!--[/diy]--> 
+    </div>
+  </div>
+</div>
+<div class="wp mtn"> 
+  <!--[diy=diy3]-->
+  <div id="diy3" class="area"></div>
+  <!--[/diy]--> 
+</div>
+<script type="text/javascript">
+   jQuery(".focusBox").slide({ mainCell:".bd ul",effect:"fold",autoPlay:true,delayTime:300});
+</script>
+<!--{template common/footer}-->
